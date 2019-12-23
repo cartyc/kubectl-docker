@@ -1,4 +1,4 @@
-FROM ubuntu:xenial-20191212 as complile
+FROM ubuntu:xenial-20191212 as compile
 
 RUN apt update && apt install -y curl wget && \
     curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl && \
@@ -11,9 +11,9 @@ RUN apt update && apt install -y curl wget && \
 
 FROM gcr.io/distroless/base as runtime
 
-COPY --from=complile /kubectl /usr/local/bin/kubectl
-COPY --from=complile /kubeval /usr/local/bin/kubeval
-COPY --from=complile /conftest /usr/local/bin/conftest
+COPY --from=compile /kubectl /usr/local/bin/kubectl
+COPY --from=compile /kubeval /usr/local/bin/kubeval
+COPY --from=compile /conftest /usr/local/bin/conftest
 
 
 CMD [ "kubectl" ]
