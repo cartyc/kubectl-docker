@@ -13,4 +13,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag macintoshprime/kubectl:v1.17
     - name: Push Image
-      run: docker push . macintoshprime/kubectl:v1.17
+      run: docker push macintoshprime/kubectl:v1.17
