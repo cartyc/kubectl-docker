@@ -13,11 +13,10 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag macintoshprime/kubectl:v1.17
 
+
+on: [pull_request]
+jobs:
   push:
-    on: 
-      pull_request:
-        branches:
-          - master
 
     runs-on: ubuntu-latest
 
