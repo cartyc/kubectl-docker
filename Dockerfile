@@ -17,4 +17,4 @@ COPY --from=compile /conftest /usr/local/bin/conftest
 
 
 CMD [ "kubectl" ]
-ENTRYPOINT []
+ENTRYPOINT [""]
