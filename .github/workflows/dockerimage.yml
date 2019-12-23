@@ -13,9 +13,18 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag macintoshprime/kubectl:v1.17
 
+  push:
+    on: 
+      pull_request:
+        branches:
+          - master
+
+    runs-on: ubuntu-latest
+
+    steps:
     - name: Docker Login
       run: docker login -u ${{ secrets.DOCKER_USER }} -p '${{ secrets.DOCKER_PASS }}'
-      
+
     - name: Push Image
       run: docker push macintoshprime/kubectl:v1.17
     
