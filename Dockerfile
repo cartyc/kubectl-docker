@@ -9,7 +9,7 @@ RUN apt update && apt install -y curl wget && \
     tar xf kubeval-linux-amd64.tar.gz && \
     pwd
 
-FROM gcr.io/distroless/base as runtime
+FROM ubuntu:xenial-20191212 as runtime
 
 COPY --from=compile /kubectl /usr/local/bin/kubectl
 COPY --from=compile /kubeval /usr/local/bin/kubeval
@@ -17,3 +17,4 @@ COPY --from=compile /conftest /usr/local/bin/conftest
 
 
 CMD [ "kubectl" ]
+ENTRYPOINT [""]
