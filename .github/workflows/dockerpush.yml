@@ -1,0 +1,14 @@
+name: docker_build
+
+on: [pull_request]
+jobs:
+  push:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Docker Login
+      run: docker login -u ${{ secrets.DOCKER_USER }} -p '${{ secrets.DOCKER_PASS }}'
+
+    - name: Push Image
+      run: docker push macintoshprime/kubectl:v1.17
