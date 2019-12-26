@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      
+
 jobs:
 
   build:
@@ -13,14 +13,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag macintoshprime/kubectl:v1.17
 
-  push:
-
-    runs-on: ubuntu-latest
-
-    steps:
     - name: Docker Login
       run: docker login -u ${{ secrets.DOCKER_USER }} -p '${{ secrets.DOCKER_PASS }}'
 
