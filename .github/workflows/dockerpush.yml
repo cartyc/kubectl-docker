@@ -1,6 +1,10 @@
 name: docker_build
 
-on: [pull_request]
+on:
+  push:
+    branches:
+      - master
+      
 jobs:
 
   build:
