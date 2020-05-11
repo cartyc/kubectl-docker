@@ -21,4 +21,4 @@ jobs:
       run: docker login -u ${{ secrets.DOCKER_USER }} -p '${{ secrets.DOCKER_PASS }}'
 
     - name: Push Image
-      run: docker push macintoshprime/kubectl:v1.17
+      run: docker push macintoshprime/kubectl:v1.17-git
