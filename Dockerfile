@@ -16,9 +16,12 @@ RUN apt update && apt install -y curl wget && \
 
 FROM ubuntu:xenial-20191212 as runtime
 
-RUN addgroup --gid 10001 app && \
-    adduser --gid 10001 -uid 10001 \
-    --disabled-login --home /app --shell /sbin/nologin app
+RUN addgroup --gid 999 app && \
+    adduser --gid 999 -uid 999 \
+    --disabled-login --home /app --shell /sbin/nologin app && \
+    mkdir -p /kubeknife && \
+    chown 999 /kubeknife && \
+    apt update && apt install -y git
 
 COPY --from=compile /kubectl /usr/local/bin/kubectl
 COPY --from=compile /kubeval /usr/local/bin/kubeval
@@ -26,6 +29,7 @@ COPY --from=compile /conftest /usr/local/bin/conftest
 COPY --from=compile /kustomize /usr/local/bin/kustomize
 
 USER app
+WORKDIR /kubeknife
 
 CMD [ "kubectl" ]
 ENTRYPOINT [""]
